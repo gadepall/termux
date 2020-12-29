@@ -16,7 +16,7 @@ OPT = s
 
 CMD_FLASH=avrdude
 MCU1=ATMEGA328P
-DEVPORT=/dev/ttyACM0
+DEVPORT=/dev/ttyUSB0
 BAUDRATE=115200
 
 # Name of this Makefile (used for "make depend").
@@ -71,7 +71,7 @@ LDFLAGS = $(EXTMEMOPTS) $(LDMAP) $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
 
 AVRDUDE_PROGRAMMER = arduino
 AVRDUDE_PORT = net:localhost:8086
-#AVRDUDE_PORT = /dev/ttyACM0
+#AVRDUDE_PORT = /dev/ttyUSB0
 AVRDUDE_BUDRATE = 115200
 
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex

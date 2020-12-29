@@ -13,15 +13,6 @@ pacman -Sy avrdude avr-gcc avr-libc
 #Install platformio on termuxarch
 pacman -S python python-pip
 pip install platformio
-#Follow instructions on platformio website for installing avr toolchain
-
-#cd to the src directory
-#modify main.cpp for the code
-#go outside the source director
-pio run -e uno
-cd /data/data/com.termux/files/home/storage/shared/tlc/resources/termux/avr/pio_codes/.pioenvs/uno
-#where pio_codes is the main directory
-#Flash the firmware.hex file using avrdude
 
 #End platformio installation on termuxarch
 
@@ -38,9 +29,11 @@ dmesg | tail
 
 #Open a terminal in termux
 ssh -tt -n -L 8086:localhost:8086 pi@10.0.0.8 '/usr/sbin/ser2net -d -C "8086:raw:600:/dev/ttyACM0:115200 NONE 1STOPBIT 8DATABITS -XONXOFF LOCAL -RTSCTS HANGUP_WHEN_DONE "' 
-#Modify the ip address 10.0.0.8 and the port /dev/ttyACM0 if necessary
+#Modify the ip address 10.0.0.8 and the port /dev/ttyACM0 if necessary  The terminal will hang, do not disturb it.
 
 #Open another terminal on termux
+svn co https://github.com/gadepall/termux/trunk/avr
+cd avr/asm_codes
 avra hello.asm
 avrdude -p atmega328p -c arduino -P net:localhost:8086 -U flash:w:hello.hex
 #On successful execution, pin 13 on the arduino should either be on or off
@@ -49,4 +42,25 @@ nano hello.asm
   ldi r17,0b00100000
 ;  ldi r17,0b00000000
 #; represents comment in asm.  Execute one of the above alternately. In one case the LED switches on, in another case
-it becomes off.
+#it becomes off.
+
+
+#AVR-GCC
+#Make sure that the rpi connection setup is unchanged
+cd avr/c_codes
+nano Makefile
+#depending upon the USB port, you may need to change /dev/ttyACM0 . 
+#save and exit  
+#The Makefile already has other instructions for flashing the .hex file
+make blink
+
+#Platformio
+#Make sure that the rpi connection setup is unchanged
+cd avr/pio_codes
+#modify main.cpp for the code in the src directory
+#go outside the source director
+pio run -e uno
+cd /storage/emulated/0/tlc/termux/avr/pio_codes/.pio/build/uno
+avrdude -p atmega328p -c arduino -P net:localhost:8086 -U flash:w:firmware.hex
+
+
