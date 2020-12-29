@@ -1,0 +1,53 @@
+#Install readline 
+apt install readline
+#In case above doesn't work, install from source using the following
+#wget http://ftp.vim.org/ftp/gnu/readline/readline-8.0-beta.tar.gz
+
+#Install libusb-1
+wget https://github.com/libusb/libusb/releases/download/v1.0.21/libusb-1.0.21.tar.bz2
+tar -xf libusb-1.0.21.tar.bz2
+cd libusb-1.0.21
+termux-fix-shebang configure
+./configure --prefix=$PREFIX --disable-udev
+make -j 4
+make install  
+#Install avrdude
+wget http://download.savannah.gnu.org/releases/avrdude/avrdude-6.3.tar.gz
+tar -xf avrdude-6.3.tar.gz
+cd avrdude-6.3
+rm config.guess config.sub
+wget -O config.guess 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD'
+wget -O config.sub 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'
+chmod +x configure
+termux-fix-shebang configure
+./configure --prefix=$PREFIX
+make -j 4
+make install 
+
+#logon to the pi
+sudo apt install ser2net
+
+#Open a terminal
+ssh -tt -n -L 8086:localhost:8086 pi@192.168.43.209 '/usr/sbin/ser2net -d -C "8086:raw:600:/dev/ttyUSB0:115200 NONE 1STOPBIT 8DATABITS -XONXOFF LOCAL -RTSCTS HANGUP_WHEN_DONE "' 
+
+#Open another terminal
+avra hello.asm
+avrdude -p atmega328p -c arduino -P net:localhost:8086 -U flash:w:hello.hex
+#If there is any issue, use above ssh as root user
+
+
+#The following commands are just for reference. Dont tinker with them unless the above doesn't work
+#Open a terminal
+ssh pi@10.0.0.6
+sudo ser2net -d -C "8086:raw:600:/dev/ttyACM0:115200 NONE 1STOPBIT 8DATABITS -XONXOFF LOCAL -RTSCTS HANGUP_WHEN_DONE" &
+#Open another terminal
+ssh -tt -n -L 8086:localhost:8086 pi@10.0.0.6
+#avrdude -p atmega328p -c arduino -P net:localhost:8086 -U flash:w:hello.hex
+#avrdude -C /path/to/avrdude.conf -p atmega328p -c arduino -P net:localhost:8086 -U flash:w:/path/to/file.hex:i
+
+
+
+#Unable to see /dev/ttyS0
+https://github.com/marco-pratesi/android/blob/master/HOWTOs/Android-USB-Serial-Connection-HOWTO.txt
+android.serverbox.ch/?p=285
+https://forum.arduino.cc/index.php?topic=326850.0
