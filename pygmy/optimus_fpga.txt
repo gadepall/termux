@@ -1,0 +1,105 @@
+# Install ubuntu on Termux
+apt update
+apt install proot-distro
+#Install ubuntu
+proot-distro ubuntu-20.04
+
+
+# Install arm toolchain and hardware tools
+apt install build-essential libssl-dev libffi-dev python-dev bison flex git tcl-dev tcl-tclreadline libreadline-dev  autoconf libtool make automake texinfo pkg-config libusb-1.0-0 libusb-1.0-0-dev gcc-arm-none-eabi libnewlib-arm-none-eabi telnet python3 apt-utils libxslt-dev python-lxml cmake
+
+
+#Install Python libraries
+pip install wheel simplejson python-constraint serial
+
+#Install quicklogic sdk
+git clone https://GitHub.com/Quicklogic-Corp/qorc-sdk.git
+
+#Begin comment for ubuntu on phone
+#Download and extract arm xpack toolchain
+wget https://github.com/xpack-dev-tools/arm-none-eabi-gcc-xpack/releases/download/v9.3.1-1.1/xpack-arm-none-eabi-gcc-9.3.1-1.1-linux-arm.tar.gz
+tar -xvzf  xpack-arm-none-eabi-gcc-9.3.1-1.1-linux-arm.tar.gz
+#This directory should be in qorc_sdk/arm_toolchain_install ideally
+#But we can keep it anywhere and add in path
+#enter root
+sudo su
+#Assuming home directory
+export PATH=xpack-arm-none-eabi-gcc-9.3.1-1.1/bin:$PATH
+#End comment for ubuntu on phone
+
+#Enter qorc-sdk
+cd qorc-sdk
+git submodule update --init --recursive qorc-example-apps
+git submodule update --init --recursive qorc-testapps
+git submodule update --init --recursive s3-gateware
+git submodule update --init --recursive TinyFPGA-Programmer-Application
+#Exit qorc-sdk directory
+cd ..
+#Download Symbiflow
+wget  https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.3.1/Symbiflow_v1.3.1.gz.run
+#Create tools directory for Symbiflow
+cd tools
+export INSTALL_DIR=/tools
+chmod +x Symbiflow_v1.3.1.gz.run
+./Symbiflow_v1.3.1.gz.run
+#This will execute with some errors
+#conda will give error
+export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$ INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
+#test ql_symbiflow
+ql_symbiflow -h
+cd qorc-sdk/qf_apps/qf_helloworldsw/GCC_Project/
+make -j4
+
+#Begin comment for ubuntu on phone
+#Ignore the 
+# Install fasm
+cd /home/pi/tools
+git clone https://github.com/QuickLogic-Corp/quicklogic-fasm
+cd quicklogic-fasm/
+nano setup.py
+# Modify
+GitHub.com/antmicro/quicklogic-fasm
+#to
+GitHub.com/Quicklogic-Corp/quicklogic-fasm
+#Change version from 
+"0.0.1"
+#to
+"0.0.2"
+
+pip3 install -r requirements.txt
+python3 setup.py install
+#End comment for ubuntu on phone
+
+#Checkout *yosys* repository (https://github.com/QuickLogic-Corp/yosys.git), branch: **quicklogic-rebased**.
+git clone https://github.com/QuickLogic-Corp/yosys.git -b quicklogic-rebased quicklogic-yosys
+cd quicklogic-yosys
+git checkout ca763e6d5efc3006aa7e8e7624d84f4da2a4827f
+make config-gcc
+make install PREFIX=/home/pi/tools
+#For ubuntu on phone
+make install PREFIX=/root/tools
+cd -
+
+
+#Checkout *yosys-symbiflow-plugins* (https://github.com/QuickLogic-Corp/yosys-symbiflow-plugins), branch: **ql-ios**.
+git clone https://github.com/QuickLogic-Corp/yosys-symbiflow-plugins -b ql-ios
+cd yosys-symbiflow-plugins
+git checkout 9ab211cb3cd4ad8c875fb25a7f648b4e0e00b923
+export PATH=/root/tools/bin:$PATH
+
+make install
+cd ~
+
+
+
+#Checkout *vpr* repository (https://github.com/SymbiFlow/vtr-verilog-to-routing.git), branch: **master**.
+git clone https://github.com/SymbiFlow/vtr-verilog-to-routing -b master
+cd vtr-verilog-to-routing
+git checkout dadca7ecf14f4c1b3e8c114f1c670d4f1801b6e0
+make -j4
+
+
+
+
+
+
