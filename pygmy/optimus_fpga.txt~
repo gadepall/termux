@@ -28,7 +28,7 @@ cd ~
 git clone --recursive https://github.com/optimuslogic/pygmy-dev
 
 #Install fasm (check if this is required during the next setup)
-cd pygmy-dev/tools/quicklogic-fasm
+cd tools/quicklogic-fasm
 #pip3 install -r requirements.txt
 python3 setup.py install
 
