@@ -66,8 +66,11 @@ nano ~/.bashrc
 export  INSTALL_DIR=/home/gvv/symbiflow
 export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
 export PATH=/home/gvv/symbiflow/bin:$PATH
-#Ctrl+X save and exit
-
+#Ctrl+X save and exit.  reboot for the settings to be updated.
+reboot
+#After login
+cd /home/gvv/
+sudo su
 #Test installation
 cd $INSTALL_DIR/quicklogic-arch-defs/tests/counter_16bit
 ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p chandalar.pcf -dump binary
