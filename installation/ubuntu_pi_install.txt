@@ -60,10 +60,13 @@ yosys -h
 qlfasm -h
 ql_symbiflow -h
 
-#In case ql_symbiflow yosys etc.. are not found,
+#add path to .bashrc
+nano ~/.bashrc
+#paste the following 3 lines at the end of the file
 export  INSTALL_DIR=/home/gvv/symbiflow
 export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
 export PATH=/home/gvv/symbiflow/bin:$PATH
+#Ctrl+X save and exit
 
 #Test installation
 cd $INSTALL_DIR/quicklogic-arch-defs/tests/counter_16bit
