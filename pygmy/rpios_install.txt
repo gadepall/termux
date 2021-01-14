@@ -1,0 +1,113 @@
+#Burn ubuntu image to sdcard and boot rpi
+
+#Install ssh-server
+sudo apt install openssh-server
+
+# Install arm toolchain and hardware tools
+sudo apt install build-essential libssl-dev libffi-dev python3-dev bison flex git tcl-dev tcl-tclreadline libreadline-dev  autoconf libtool make automake texinfo pkg-config libusb-1.0-0 libusb-1.0-0-dev telnet python3 apt-utils libxslt-dev python3-lxml python3-simplejson cmake curl python3-pip subversion
+
+#Install Python libraries (on device connecting pygmy to usb)
+pip3 install wheel python-constraint serial tinyfpgab apio
+
+#Pull all necessary tools
+cd ~
+sudo su
+#Need to check if pygmy-sdk can be reduced by keeping only the basic hardware
+#components.
+git clone --recursive https://github.com/optimuslogic/pygmy-dev
+
+
+#Create directory for building the toolchain
+mkdir -p /home/pi/symbiflow
+export  INSTALL_DIR=/home/pi/symbiflow
+
+#Download and extract symbiflow
+curl $(curl https://storage.googleapis.com/symbiflow-arch-defs-install/latest) > /home/pi/arch.tar.gz
+tar -C $INSTALL_DIR -xvf /home/pi/arch.tar.gz
+
+export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
+
+#Install fasm 
+cd /home/pi/pygmy-dev/tools/quicklogic-fasm
+pip3 install -r requirements.txt
+python3 setup.py install
+cd /home/pi/
+
+#Install yosys
+cd /home/pi/pygmy-dev/tools/quicklogic-yosys
+make config-gcc
+make -j4 install PREFIX=$INSTALL_DIR
+cd /home/pi/
+
+#install yosys-symbiflow
+cd /home/pi/pygmy-dev/tools/yosys-symbiflow-plugins
+export PATH=$INSTALL_DIR/bin:$PATH
+make -j4 install
+cd /home/pi/
+
+#install vtr
+cd /home/pi/pygmy-dev/tools/vtr-verilog-to-routing
+make -j4
+cd /home/pi/
+
+
+cp /home/pi/pygmy-dev/tools/vtr-verilog-to-routing/build/vpr/vpr $INSTALL_DIR/bin
+cp /home/pi/pygmy-dev/tools/vtr-verilog-to-routing/build/utils/fasm/genfasm $INSTALL_DIR/bin
+
+#Check the executables on Path
+vpr -h
+yosys -h
+qlfasm -h
+ql_symbiflow -h
+
+#add path to .bashrc
+nano ~/.bashrc
+#paste the following 3 lines at the end of the file
+export  INSTALL_DIR=/home/pi/symbiflow
+export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
+export PATH=$INSTALL_DIR/bin:$PATH
+#Ctrl+X save and exit.  reboot for the settings to be updated.
+reboot
+#After login
+cd /home/pi/
+sudo su
+#Test installation
+cd $INSTALL_DIR/quicklogic-arch-defs/tests/counter_16bit
+ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p chandalar.pcf -dump binary
+#top.bin must be generated successfully 
+
+#Blink program
+cd /home/pi/
+svn co https://github.com/gadepall/termux/trunk/pygmy/blink
+ql_symbiflow -compile -src /home/pi/blink -d ql-eos-s3 -P PU64 -v helloworldfpga.v -t helloworldfpga -p quickfeather.pcf -dump binary
+
+
+#helloworldfpga.bin must be generated successfully in /home/pi/blink
+
+#Now flashing to the board through usb
+apio drivers --serial-enable
+
+python3 /home/pi/pygmy-dev/pygmy-sdk/TinyFPGA-Programmer-Application/tinyfpga-programmer-gui.py --port /dev/ttyACM0 --appfpga /home/pi/blink/helloworldfpga.bin --mode fpga
+
+#In case of serial tools error
+pip3 install pyserial --upgrade
+
+
+#GCC-Compilation for C SRC (ARM) (need to test this)
+
+##For RPI3/4 in 32 -bit mode (Raspbian generally):
+#Download and unzip:
+cd $INSTALL_DIR
+wget https://github.com/xpack-dev-tools/arm-none-eabi-gcc-xpack/releases/download/v9.3.1-1.1/xpack-arm-none-eabi-gcc-9.3.1-1.1-linux-arm.tar.gz 
+tar -xvzf  xpack-arm-none-eabi-gcc-9.3.1-1.1-linux-arm.tar.gz 
+export PATH=$INSTALL_DIR/xpack-arm-none-eabi-gcc-9.3.1-1.1/bin:$PATH
+
+##For RPI4 in 64 -bit mode (Ubuntu 20.04):
+##OR for Termux on Android (ubuntu 20.04 proot)#Download and unzip:
+cd $INSTALL_DIR
+wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-aarch64-linux.tar.bz2
+tar -xvjf  gcc-arm-none-eabi-9-2020-q2-update-aarch64-linux.tar.bz2
+export PATH=$INSTALL_DIR/gcc-arm-none-eabi-9-2020-q2-update/bin:$PATH
+
+#Test the GNU RM GCC Embedded toolchain
+arm-none-eabi-gcc --version
