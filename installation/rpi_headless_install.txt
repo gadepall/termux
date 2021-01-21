@@ -1,0 +1,85 @@
+#Download headless rpi image from
+https://www.raspberrypi.org/software/operating-systems/
+
+#Unzip the file to obtain a .img file
+
+unzip 2021-01-11-raspios-buster-armhf-lite.zip
+
+#Check mount location of usb stick with sdcard
+sudo fdisk -l
+
+#If your sdcard location is sdX
+
+#Write the image to the sdcard.  Modify the names of the image and the 
+#sdcard location 
+
+sudo dd bs=4M if=xxxraspbianxxx.img of=/dev/sdX conv=fsync
+
+#Enable ssh (if required)
+cd ˜
+mkdir test
+sudo mount sdX1 test
+cd test
+#Create an empty filename called ssh
+#save and exit
+cd ˜
+sudo reboot
+
+#Now insert the sdcard in the rpi zero
+#Connect to your android mobile with usb tethering
+#Open termux
+
+ip neighbor
+
+#You may see
+192.168.42.239 dev rndis0 lladdr 66:54:f4:23:44:6c REACHABLE
+ssh pi@192.168.42.239 
+#Enter the password to login
+
+sudo apt update
+sudo apt upgrade
+
+sudo nano /etc/network/interfaces
+
+allow-hotplug usb0
+iface usb0 inet dhcp
+
+
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet dhcp
+
+#save and exit.  
+
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="YOUR_SSID_HERE"
+    psk="YOUR_SECRET_PASSPHRASE_HERE"
+    id_str="SOME_DESCRIPTIVE_NAME"
+}
+
+#Reboot
+sudo reboot
+
+#Finding devices connected in network
+nmap -sn 10.0.0.1/24
+ssh pi@10.0.0.6
+
+cd ˜
+sudo apt install python3-pip subversion  git
+sudo pip3 install wheel python-constraint serial tinyfpgab apio
+apio drivers --serial-enable
+sudo reboot
+
+cd ˜
+git clone --recursive https://github.com/QuickLogic-Corp/TinyFPGA-Programmer-Application.git
+
+#Switch to termux terminal
+scp /storage/emulated/0/Download/blink/helloworldfpga.bin pi@10.0.0.6:
+
+
+python3 /home/pi/TinyFPGA-Programmer-Application/tinyfpga-programmer-gui.py --port /dev/ttyACM0 --appfpga /home/pi/helloworldfpga.bin --mode fpga

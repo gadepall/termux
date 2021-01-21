@@ -156,7 +156,7 @@ apt update
 apt install proot-distro
 #Install ubuntu
 proot-distro install ubuntu-20.04
-proot-distro login ubuntu-20.04
+proot-distro ubuntu-20.04
 
 
 
