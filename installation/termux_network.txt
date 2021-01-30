@@ -1,0 +1,9 @@
+#Finding devices connected in network
+nmap -sn 10.0.0.1/24
+ssh pi@10.0.0.6
+
+#Finding address of connected device in usb/wifi tethering mode 
+ip neighbor
+#You may see
+192.168.42.239 dev rndis0 lladdr 66:54:f4:23:44:6c REACHABLE
+ssh pi@192.168.42.239 

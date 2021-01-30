@@ -64,3 +64,4 @@ cd /storage/emulated/0/tlc/termux/avr/pio_codes/.pio/build/uno
 avrdude -p atmega328p -c arduino -P net:localhost:8086 -U flash:w:firmware.hex
 
 
+

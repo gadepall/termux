@@ -1,0 +1,13 @@
+#ARM-GCC
+wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-aarch64-linux.tar.bz2
+tar -xvjf  gcc-arm-none-eabi-9-2020-q2-update-aarch64-linux.tar.bz2
+export PATH=$INSTALL_DIR/gcc-arm-none-eabi-9-2020-q2-update/bin:$PATH
+
+#Alternartively
+#Download precompiled arm binaries for aarch64 from
+https://drive.google.com/a/iith.ac.in/file/d/1Kts3x8iS4kwGuLE8K_tNZv8bCWIQaQNs/view?usp=drivesdk
+cp gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 ~/
+cd ~
+tar xf gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2
+
+

@@ -1,0 +1,24 @@
+#To build nosudo from source
+
+#login as user
+git clone https://aur.archlinux.org/nosudo.git
+cd nosudo
+makepkg -si
+#This will create nosudo package but prompt for password.  break out and type
+cp nosudo-0.9-1-any.pkg.tar.xz /data/data/com.termux/files/home/
+#login as root
+pacman -U  nosudo-0.9-1-any.pkg.tar.xz
+#End installing nosudo on termuxarch
+
+
+
+#To build yay from source
+#login into user
+git clone https://aur.archlinux.org/yay-git.git
+cd yay-git
+makepkg -si
+#This will build a pkg.tar.xz file and will ask for root permission.  If root doesn't work,
+cp yay-git***.pkg.tar.gz /data/data/com.termux/files/home/
+#Login as root
+pacman -U yay-git***.pkg.tar.gz
+#end install yay

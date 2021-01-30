@@ -1,5 +1,0 @@
-#Burn ubuntu image to sdcard and boot rpi
-
-#Install ssh-server
-apt install openssh-server
-

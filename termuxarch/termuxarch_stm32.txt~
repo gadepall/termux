@@ -1,0 +1,12 @@
+#Download example directory for building arm binaries on STM32F103C8T6
+
+git clone https://github.com/gadepall/STM32F103C8T6.git
+startarch l user
+cd STM32F103C8T6
+make clean
+make bin
+#This should generate the bin file for the blink
+#transfer the bin file to the rpi and 
+#Follow the instructions in
+https://github.com/gadepall/arm-embedded/blob/master/setup/gvv_stm32_tinker_setup.pdf
+#to flash the bin file to the stm32 from the rpi using the telnet terminal

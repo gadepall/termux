@@ -1,0 +1,6 @@
+#Install python for math computation on termuxarch
+#As termuxarch user
+sudo pacman -S python-pip
+sudo pacman -S  python-numpy python-scipy python-matplotlib python-sympy python-mpmath python-cvxopt
+yay -S --editmenu python-cvxpy
+#End Install python on termuxarch.  
