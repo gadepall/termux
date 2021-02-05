@@ -62,7 +62,7 @@ https://mirrors.ocf.berkeley.edu/ubuntu/pool/main/f/fakeroot/fakeroot_1.24.orig.
 #https://www.reddit.com/r/archlinux/comments/dv9k8t/cannot_build_with_fakeroot_looking_for/
 #wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.24.orig.tar.gz
 tar xf fakeroot_1.24.orig.tar.gz
-cd fakeroot_1.24/
+cd fakeroot-1.24/
 #if the above link doesnot work, download fakeroot from the debain repository online and repeat the above steps
 
 ./bootstrap

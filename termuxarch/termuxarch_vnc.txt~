@@ -1,1 +1,31 @@
-#VNC#start vncservervncserver#Follow instructions and set a password #Configure vncnano /root/.vnc/xstartup #!/bin/bashunset SESSION_MANAGERunset DBUS_SESSION_BUS_ADDRESSexec startlxde #Comment everything else in the above file nano /root/.vnc/config #For landscape modegeometry=1900x900localhost #For portrait modegeometry=800x1200 #On Android install vncviewer#Configure to localhost:1 #for stopping vncservervncserver -kill :1
+#VNC
+
+#start vncserver
+vncpasswd
+#Follow instructions and set a password
+
+#Configure vnc
+nano /root/.vnc/xstartup
+
+#!/bin/bash
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+exec startlxde
+
+#Comment everything else in the above file
+
+nano /root/.vnc/config
+
+#For landscape mode
+geometry=1900x900
+localhost
+
+
+#For portrait mode
+geometry=800x1200
+
+#On Android install vncviewer
+#Configure to localhost:1
+
+#for stopping vncserver
+vncserver -kill :1
