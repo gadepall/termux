@@ -34,6 +34,18 @@ jupyter notebook
 
 #End Python Installation
 
+#Optional, do this only if needed
+pip install cvxopt cvxpy
+#if cvxopt fails, then
+pip install -Iv cvxopt==1.1.8
+#if cvxpy fails
+git clone https://github.com/cvxgrp/cvxpy.git
+cd cvxpy
+python setup.py install
+#or
+pip install -Iv cvxpy==1.1.0
+
+
 #Latex
 apt install texlive-full ghostscript texinfo
 apt-mark hold ghostscript
@@ -71,16 +83,4 @@ tex2pdf.sh training/math/gvv_math_eg
 ssconvert --export-type=Gnumeric_html:latex projects.xlsx projects.tex
 http://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 ssconvert --export-type=Gnumeric_html:html40 filename.xls filename.html
-
-#Optional, do this only if needed
-pip install cvxopt cvxpy
-#if cvxopt fails, then
-pip install -Iv cvxopt==1.1.8
-#if cvxpy fails
-git clone https://github.com/cvxgrp/cvxpy.git
-cd cvxpy
-python setup.py install
-#or
-pip install -Iv cvxpy==1.1.0
-
 

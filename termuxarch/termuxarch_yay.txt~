@@ -22,3 +22,45 @@ cp yay-git***.pkg.tar.gz /data/data/com.termux/files/home/
 #Login as root
 pacman -U yay-git***.pkg.tar.gz
 #end install yay
+
+
+#Install fakeroot on termuxarch.  This allows installation using makepkg 
+#logged in as user
+startarch l user
+cd /data/data/com.termux/files/home
+https://mirrors.ocf.berkeley.edu/ubuntu/pool/main/f/fakeroot/fakeroot_1.24.orig.tar.gz
+#https://www.reddit.com/r/archlinux/comments/dv9k8t/cannot_build_with_fakeroot_looking_for/
+#wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.24.orig.tar.gz
+tar xf fakeroot_1.24.orig.tar.gz
+cd fakeroot_1.24/
+#if the above link doesnot work, download fakeroot from the debain repository online and repeat the above steps
+
+./bootstrap
+./configure --prefix=/opt/fakeroot  --libdir=/opt/fakeroot/libs  --disable-static  --with-ipc=tcp
+
+make -j4
+
+#login as root and execute without sudo
+sudo make install
+
+/opt/fakeroot/bin/fakeroot
+
+exit
+
+#Login as root
+pacman -R fakeroot
+
+cd /bin
+
+ln -s /opt/fakeroot/bin/fakeroot
+
+fakeroot
+#End fakeroot install on termuxarch
+
+#Ignore packages
+nano /etc/pacman.conf
+#search for the line and change to
+Ignorepkg = sudo fakeroot
+#This will ensure that nosudo and the new fakeroot are not overwritten
+#Save and exit
+

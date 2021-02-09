@@ -15,7 +15,7 @@ bash arch/startarch
 #Essential packages
 pacman -Syu
 pacman -Sy go base-devel tigervnc lxde wget git geany python-pip ttf-dejavu  chromium \
-geany gnumeric clang bison flex svn make cmake
+geany gnumeric clang bison flex svn make cmake 
 
 #Exit 
 #Create user on termuxarch
@@ -35,64 +35,8 @@ startarch l username
 bash arch/startarch ul user
 #or
 startarch l user
+makeyay
+
 #End archlinux install
 
 
-------------------------#The following is for installing third party packages through AUR and YAY------------------------
-#Installing nosudo on termuxarch
-#login as root
-pacman -Rdd sudo
-#Download
-https://github.com/gadepall/resources/blob/master/termux/termuxarch/nosudo-0.9-1-any.pkg.tar.xz
-pacman -U nosudo-0.9-1-any.pkg.tar.xz
-
-#This will give superuser permissions to user, default password is root
-
-
-#install yay on termuxarch
-#login as root and download
-https://github.com/gadepall/resources/blob/master/termux/termuxarch/yay-git-9.4.4.r0.g3a5a6a7-1-aarch64.pkg.tar.xz
-pacman -U yay-git-9.4.4.r0.g3a5a6a7-1-aarch64.pkg.tar.xz
-
-#Install fakeroot on termuxarch.  This allows installation using makepkg 
-#logged in as user
-startarch l user
-cd /data/data/com.termux/files/home
-https://mirrors.ocf.berkeley.edu/ubuntu/pool/main/f/fakeroot/fakeroot_1.24.orig.tar.gz
-#https://www.reddit.com/r/archlinux/comments/dv9k8t/cannot_build_with_fakeroot_looking_for/
-#wget http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.24.orig.tar.gz
-tar xf fakeroot_1.24.orig.tar.gz
-cd fakeroot-1.24/
-#if the above link doesnot work, download fakeroot from the debain repository online and repeat the above steps
-
-./bootstrap
-./configure --prefix=/opt/fakeroot  --libdir=/opt/fakeroot/libs  --disable-static  --with-ipc=tcp
-
-make -j4
-
-#login as root and execute without sudo
-sudo make install
-
-/opt/fakeroot/bin/fakeroot
-
-exit
-
-#Login as root
-pacman -R fakeroot
-
-cd /bin
-
-ln -s /opt/fakeroot/bin/fakeroot
-
-fakeroot
-#End fakeroot install on termuxarch
-
-#Ignore packages
-nano /etc/pacman.conf
-#search for the line and change to
-Ignorepkg = sudo fakeroot
-#This will ensure that nosudo and the new fakeroot are not overwritten
-#Save and exit
-
-
-------------------------#End installing YAY------------------------
