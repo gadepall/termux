@@ -5,5 +5,5 @@ apt install proot-distro
 #Install ubuntu
 proot-distro install ubuntu-20.04
 proot-distro login ubuntu-20.04
-apt update &&apt upgrade
+apt update && apt upgrade
 apt install build-essential
