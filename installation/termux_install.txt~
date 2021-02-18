@@ -34,18 +34,6 @@ jupyter notebook
 
 #End Python Installation
 
-#Optional, do this only if needed
-pip install cvxopt cvxpy
-#if cvxopt fails, then
-pip install -Iv cvxopt==1.1.8
-#if cvxpy fails
-git clone https://github.com/cvxgrp/cvxpy.git
-cd cvxpy
-python setup.py install
-#or
-pip install -Iv cvxpy==1.1.0
-
-
 #Latex
 apt install texlive-full ghostscript texinfo
 apt-mark hold ghostscript
@@ -55,15 +43,21 @@ chmod +x tex2pdf.sh
 mv tex2pdf.sh $PREFIX/bin/
 #Execute filename.tex as
 tex2pdf filename
+#If the above doesn't work, try
+export PATH=$PATH:/data/data/com.termux/files/usr/bin/texlive
+$PREFIX/etc/profile.d/texlive.sh
+
 
 #Begin Latex and Python Testing
 #Download Test Directory for LaTeX and Python
 svn co https://github.com/gadepall/school/trunk/training
 
 #Testing python installation
-python training/math/codes/tri_sss.py
+cd training/math
+python codes/tri_sss.py
 #and the following file for sympy
-python training/chemistry/codes/chembal.py
+cd ../chemistry/
+python codes/chembal.py
 
 #Testing Latex Installation
 #For latex document, open 
@@ -83,4 +77,16 @@ tex2pdf.sh training/math/gvv_math_eg
 ssconvert --export-type=Gnumeric_html:latex projects.xlsx projects.tex
 http://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 ssconvert --export-type=Gnumeric_html:html40 filename.xls filename.html
+
+#Optional, do this only if needed
+pip install cvxopt cvxpy
+#if cvxopt fails, then
+pip install -Iv cvxopt==1.1.8
+#if cvxpy fails
+git clone https://github.com/cvxgrp/cvxpy.git
+cd cvxpy
+python setup.py install
+#or
+pip install -Iv cvxpy==1.1.0
+
 

@@ -49,9 +49,11 @@ tex2pdf filename
 svn co https://github.com/gadepall/school/trunk/training
 
 #Testing python installation
-python training/math/codes/tri_sss.py
+cd training/math
+python codes/tri_sss.py
 #and the following file for sympy
-python training/chemistry/codes/chembal.py
+cd ../chemistry/
+python codes/chembal.py
 
 #Testing Latex Installation
 #For latex document, open 
