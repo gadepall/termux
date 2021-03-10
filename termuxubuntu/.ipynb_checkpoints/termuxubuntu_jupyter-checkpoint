@@ -1,0 +1,34 @@
+#login to ubuntu 20.04 and 
+#Enter the home directory of termux
+cd /data/data/com.termux/files/home
+
+#For python
+pip install numpy scipy matplotlib mpmath sympy jupyterlab
+
+#Generate notebook config file
+jupyter notebook --generate-config
+
+
+#For latex extension
+#This is because the official support is only for jupyter 1 version
+
+git clone https://github.com/joequant/jupyterlab-latex
+cd jupyterlab-latex
+pip install -e .
+jlpm install
+jlpm run build
+jupyter labextension install .
+
+#Run jupyter lab
+jupyter-lab
+
+#Copy/paste this URL into your browser when you connect for the first time,
+#Then open your tex file in jupyter and right click.  
+#Show latex preview.  This will execute the tex file and open the pdf.  This takes some time.
+
+
+#By default, xelatex is used in jupyter/latex.  To use pdflatex
+nano /root/.jupyter/jupyter_notebook_config.py
+#and add
+c.LatexConfig.latex_command = 'pdflatex'
+#at the end of the file
