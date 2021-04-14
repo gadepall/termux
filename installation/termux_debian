@@ -1,0 +1,9 @@
+#Installing debian on termux
+# Install debian on Termux
+apt update
+apt install proot-distro
+#Install ubuntu
+proot-distro install debian-buster
+proot-distro login debian-buster
+apt update && apt upgrade
+apt install build-essential
