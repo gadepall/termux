@@ -36,6 +36,20 @@ pacman -Syu
 pacman -Sy go base-devel tigervnc lxde wget git geany python-pip ttf-dejavu  chromium \
 geany gnumeric clang bison flex svn make cmake 
 
+
+#Exit
+#Login as user
+bash arch/startarch ul user
+#or
+startarch l user
+makeyay
+
+# Installs code-server from the AUR using yay.
+yay -S code-server
+sudo systemctl enable --now code-server@$USER
+# Now visit http://127.0.0.1:8080. Your password is in ~/.config/code-server/config.yaml
+
+
 #Exit 
 #Create user on termuxarch
 startarch
@@ -48,13 +62,6 @@ useradd -m  username
 exit
 #To login as user
 startarch l username
-
-#Exit
-#Login as user
-bash arch/startarch ul user
-#or
-startarch l user
-makeyay
 
 
 
