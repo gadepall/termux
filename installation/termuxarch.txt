@@ -33,8 +33,11 @@ bash arch/startarch
 
 #Essential packages
 pacman -Syu
-pacman -Sy go base-devel tigervnc lxde wget git geany python-pip ttf-dejavu  chromium \
-geany gnumeric clang bison flex svn make cmake 
+#pacman -Sy go base-devel tigervnc lxde wget git geany python-pip ttf-dejavu  chromium \
+#geany gnumeric clang bison flex svn make cmake 
+
+pacman -Sy go base-devel  wget git  python-pip \
+gnumeric clang bison flex svn make cmake 
 
 
 #Exit
@@ -46,12 +49,26 @@ makeyay
 
 # Installs code-server from the AUR using yay.
 yay -S code-server
-sudo systemctl enable --now code-server@$USER
+#sudo systemctl enable --now code-server@$USER
 # Now visit http://127.0.0.1:8080. Your password is in ~/.config/code-server/config.yaml
+export PASSWORD="password"
+code-server
+
+#Install texlive
+pacman -Sy texlive-most
+
+#Install python
+pacman -Sy python-numpy python-scipy python-matplotlib python-mpmath python-sympy python-cvxopt python-wheel
+pip install cvxpy
+
+#Install imagemagick
+pacman -Sy install imagemagick
+
+
 
 
 #Exit 
-#Create user on termuxarch
+#Do this only if required - Create user on termuxarch 
 startarch
 addauser user
 #if the above command doesn't work
@@ -66,5 +83,6 @@ startarch l username
 
 
 #End archlinux install
+
 
 

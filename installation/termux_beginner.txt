@@ -1,0 +1,67 @@
+#------------------Install Termux----------------------------
+
+#Attach a keyboard to your mobile 
+
+#Install fdroid apk from
+https://www.f-droid.org/
+
+#Open fdroid on your mobile and install termux from it
+
+#Give termux access to your  user directory in android
+termux-setup-storage
+
+#Upgrade packages
+apt update && apt upgrade
+apt install build-essential
+
+#Mandatory packages
+apt install git silversearcher-ag wget openssh subversion imagemagick proot nano python bsdtar mutt nmap
+#------------------End Install Termux----------------------------
+
+#------------------ Installing ubuntu on termux----------------------------
+apt update
+apt install proot-distro
+#Install ubuntu
+proot-distro install ubuntu-20.04
+proot-distro login ubuntu-20.04
+apt update && apt upgrade
+apt install apt-utils build-essential
+apt install git  wget  subversion imagemagick  nano  bsdtar 
+#------------------End Installing ubuntu on termux----------------------------
+
+#------------------ Installing latex on termuxubuntu----------------------------
+apt install texlive-full gnumeric
+#------------------ End installing latex on termuxubuntu----------------------------
+
+#------------------ Installing python3 on termuxubuntu----------------------------
+apt install python3-pip python3-numpy python3-scipy python3-matplotlib python3-mpmath python3-sympy python3-cvxopt
+pip install cvxpy
+#------------------ End installing python3 on termuxubuntu----------------------------
+
+#------------------ Installing code-server on termuxubuntu----------------------------
+
+# Download code-server 
+wget https://github.com/cdr/code-server/releases/download/v3.10.2/code-server_3.10.2_arm64.deb
+
+#Install code-server
+dpkg -i code-server_3.10.2_arm64.deb
+
+#Create password for vscode
+export PASSWORD="test123"
+
+#Run code-server
+cd $PREFIX/../home/
+code-server
+
+#In your browser, open
+http://127.0.0.1:8080
+
+#and enter the password "test123"
+
+#------------------ End installing code-server on termuxubuntu----------------------------
+
+
+#Code server extensions (can be installed from within the vscode environment)
+LaTeX Workshop
+Python
+Code Runner
