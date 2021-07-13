@@ -15,7 +15,7 @@ apt update && apt upgrade
 apt install build-essential
 
 #Mandatory packages
-apt install git silversearcher-ag wget openssh subversion imagemagick proot nano python  mutt nmap
+apt install git silversearcher-ag wget openssh subversion imagemagick proot nano python  bsdtar mutt nmap
 #------------------End Install Termux----------------------------
 
 #------------------ Installing ubuntu on termux----------------------------
@@ -35,7 +35,7 @@ apt install texlive-full gnumeric
 
 #------------------ Installing python3 on termuxubuntu----------------------------
 apt install python3-pip python3-numpy python3-scipy python3-matplotlib python3-mpmath python3-sympy python3-cvxopt
-pip install cvxpy
+pip3 install cvxpy
 #------------------ End installing python3 on termuxubuntu----------------------------
 
 #------------------ Installing code-server on termuxubuntu----------------------------
