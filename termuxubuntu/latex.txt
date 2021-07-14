@@ -1,7 +1,7 @@
 #Open a new terminal in termux and type
 
 cd $PREFIX/../home/storage/shared/Downloads/
-wget 
+wget https://raw.githubusercontent.com/gadepall/termux/main/installation/rncom.sh
 bash rncom.sh
 
 
@@ -14,7 +14,7 @@ https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation
 
 storage/shared/github/training/math/gvv_math_eg.tex
 
-#Open terminal in vscode 
+#Open terminal in vscode (the terminal should appear below your editor)
 
 #Open $PREFIX/../home/storage/shared/Downloads/rncom.sh and comment the following line  like this
 
