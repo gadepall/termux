@@ -1,0 +1,39 @@
+#Open a new terminal in termux and type
+
+cd $PREFIX/../home/storage/shared/Downloads/
+wget 
+bash rncom.sh
+
+
+#Open vscode.  From now on, all instructions are for vscode only 
+#Install LaTeX-Workshop using the following instructions
+
+https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation
+
+#Open 
+
+storage/shared/github/training/math/gvv_math_eg.tex
+
+#Open terminal in vscode 
+
+#Open $PREFIX/../home/storage/shared/Downloads/rncom.sh and comment the following line  like this
+
+#git clone https://github.com/gadepall/training $PREFIX/../home/storage/shared/training
+
+
+#and uncomment  the lines like this
+
+cd $PREFIX/../home/storage/shared/training
+texfot pdflatex gvv_math_eg.tex
+texfot pdflatex gvv_math_eg.tex
+
+
+#On the terminal, type 
+bash $PREFIX/../home/storage/shared/Downloads/rncom.sh
+
+
+#If there are no errors, you can now start creating documents using latex.
+
+
+
+
