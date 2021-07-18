@@ -34,6 +34,3 @@ bash $PREFIX/../home/storage/shared/Downloads/rncom.sh
 
 #If there are no errors, you can now start creating documents using latex.
 
-
-
-
