@@ -1,0 +1,10 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+if [ "$@" == "TabLimitIncrease.xyz" ]
+then
+   bash #or whatever shell you use
+#else
+#rest of your code or leave blank
+fi
+
+

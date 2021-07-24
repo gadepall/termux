@@ -1,0 +1,3 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+am start -a android.intent.action.SEND --es android.intent.extra.TEXT TabLimitIncrease.xyz -t text/plain com.termux &> /dev/null
