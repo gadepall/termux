@@ -76,6 +76,7 @@ mkdir -p $HOME/bin
 cp termux-url-opener $HOME/bin/
 cp tab $PREFIX/bin/tab
 chmod +x $PREFIX/bin/tab
-#Now from any terminal run 
+#Now on any terminal type 
 tab
-#This will launch a new terminal.  Typing tab you can launch as many terminals as you please.
+#and press enter.  This will launch a new terminal.  
+#After that you can just type tab and press enter to open new tabs beyond the limit
