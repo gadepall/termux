@@ -66,5 +66,16 @@ LaTeX Workshop
 Python
 Code Runner
 
+#------------------Additional tabs on termux (Only for those who konw what they are doing) ---------------------------------------------
+
 #By default, termux allows you to open only 8 tabs.  To increase this, do the follwoing
-#Download 
+#Download the folowing 
+wget https://raw.githubusercontent.com/gadepall/termux/main/installation/tab
+https://github.com/gadepall/termux/blob/main/installation/termux-url-opener
+mkdir -p $HOME/bin
+cp termux-url-opener $HOME/bin/
+cp tab $PREFIX/bin/tab
+chmod +x $PREFIX/bin/tab
+#Now from any terminal run 
+tab
+#This will launch a new terminal.  Typing tab you can launch as many terminals as you please.
