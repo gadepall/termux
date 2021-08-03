@@ -71,7 +71,7 @@ Code Runner
 #By default, termux allows you to open only 8 tabs.  To increase this, do the follwoing
 #Download the folowing 
 wget https://raw.githubusercontent.com/gadepall/termux/main/installation/tab
-https://github.com/gadepall/termux/blob/main/installation/termux-url-opener
+wget https://github.com/gadepall/termux/blob/main/installation/termux-url-opener
 mkdir -p $HOME/bin
 cp termux-url-opener $HOME/bin/
 cp tab $PREFIX/bin/tab
