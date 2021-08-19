@@ -29,14 +29,23 @@ apt install apt-utils build-essential
 apt install git  wget  subversion imagemagick  nano  bsdtar 
 #------------------End Installing ubuntu on termux----------------------------
 
-#------------------ Installing latex on termuxubuntu----------------------------
-apt install texlive-full gnumeric
-#------------------ End installing latex on termuxubuntu----------------------------
-
 #------------------ Installing python3 on termuxubuntu----------------------------
 apt install python3-pip python3-numpy python3-scipy python3-matplotlib python3-mpmath python3-sympy python3-cvxopt
 pip3 install cvxpy
 #------------------ End installing python3 on termuxubuntu----------------------------
+
+#------------------ Download latex and python templates----------------------------
+cd /data/data/com.termux/files/home/storage/shared/Download
+wget https://raw.githubusercontent.com/gadepall/termux/main/installation/rncom.sh
+bash rncom.sh
+
+#Commenting and uncommenting relevant lines in rncom.sh, python and latex installation can be tested
+#------------------ End downloading latex and python templates----------------------------
+
+#------------------ Installing latex on termuxubuntu----------------------------
+apt install texlive-full gnumeric
+#------------------ End installing latex on termuxubuntu----------------------------
+
 
 #------------------ Installing code-server on termuxubuntu----------------------------
 
