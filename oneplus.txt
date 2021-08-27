@@ -1,0 +1,65 @@
+#The following instructions are for installing lineage OS on Oneplus 5T, codename dumpling
+#Miracast doesn't work, but you can cast to your android TV.
+#Everything else is fine.
+
+#On your phone:
+#Go to settings and keep tapping build no a few times.  You will then get access to developer options
+#Now enable usb debugging in developer options
+
+
+#On your raspberry pi
+sudo apt install adb fastboot
+
+#Download the lineage OS recovery image and nightly ROM from
+https://download.lineageos.org/dumpling
+#Download the magisk app zip file
+https://magiskapp.com/zip/#download-now
+
+#Connect phone to rpi and execute 
+adb reboot bootloader
+
+#You will see an allow usb debugging prompt, press ok.  your phone will reboot to bootloader in fastboot mode
+
+#On Rpi
+fastboot flash recovery <recovery_filename>.img
+
+#On your phone, press the volume button a few times till you see recovery mode.  select by pressing the power button
+#Now tap Factory Reset, 
+#then Format data / factory reset and continue with the formatting process. This will remove encryption and delete all files stored in the internal storage, as well as format your cache partition (if you have one).
+#Return to the main menu.
+#elect “Apply Update”, then “Apply from ADB”
+
+#On RPi, flash the custom rom 
+ adb sideload filename.zip
+ #Flasth the magis app
+ adb sideload Magiskfilename.zip
+
+ #Reboot the phone
+ 
+ #Banking apps usually do not work on custom roms.  To resolve this, 
+#Open the Magisk app on your phone.  You will see four icons at the bottom.
+#Click the second icon and you will see Superuser on top and then MagiskHide ->.  
+#Click on the arrow and select the banking app that you want to use.
+
+#Now you can use the banking app of your choice.
+
+#TWRP recovery.  Lineage OS recovery is good, but TWRP is more convenient.
+#On the Magisk app, go to settings and eanble root from the options below.
+#Download the TWRP app from play store and grant superuser access.  
+#In the TWRP app, select the recovery image for your phone model and download.
+#Install this image using the TWRP app.
+
+#On the Magisk app, click the press the icon beside the settings icon on the top right
+#Reboot to recovery
+#You will now see the teamwin logo.  Wait for some time, as it takes time to load.  Follow the instructions there.
+
+#TWRP installation is complete.
+#You now have a mukt (free) phone.
+
+
+
+
+
+
+
+
