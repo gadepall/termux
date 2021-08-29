@@ -1,0 +1,22 @@
+#Installing jupyterlab and running turtle
+
+pip install jupyterlab mobilechelonian "ipykernel<5.5.2"
+jupyter notebook --allow-root
+
+#Open a new notebook and paste the following.
+
+#from ipyturtle import Turtle
+from mobilechelonian import Turtle
+t = Turtle()
+t.speed(5)
+colours=["red","blue","yellow","brown","black","purple","green"]
+
+t.penup(); t.left(90); t.forward(200);t.right(90);t.pendown()
+for i in range (0,18):
+    t.pencolor(colours[i%7])
+    t.right(20)
+    t.forward(50)
+
+t.right(180)
+t.home()
+#t.points
