@@ -43,13 +43,15 @@ bash rncom.sh
 #Commenting and uncommenting relevant lines in rncom.sh, python and latex installation can be tested
 #------------------ End downloading latex and python templates----------------------------
 
-#------------------ Installing latex on termuxubuntu----------------------------
-apt install texlive-full gnumeric
-#------------------ End installing latex on termuxubuntu----------------------------
-
 #------------------ Installing jupyterlab on termuxubuntu----------------------------
 pip install jupyterlab 
 jupyterlab --allow-root
+#------------------ End installing jupyterlab on termuxubuntu----------------------------
+
+
+#------------------ Installing latex on termuxubuntu----------------------------
+apt install texlive-full gnumeric
+#------------------ End installing latex on termuxubuntu----------------------------
 
 
 #------------------ Installing code-server on termuxubuntu----------------------------
