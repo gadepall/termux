@@ -1,0 +1,60 @@
+#ESP32----------------------------------------------------------
+#Install platformio (use pip3 instead of pip for ubuntu) on termux
+pip install platformio
+
+#Download project
+svn co https://github.com/gadepall/termux/trunk/pio/Projects
+
+#Install xtensa and espressif32
+cd Projects/hi
+pio run
+
+#This will also build firmware.bin in 
+.pio/build/esp32doit-devkit-v1/firmware.bin 
+
+
+#On your rpi
+pip3 install platformio
+mkdir -p ~/hi/.pio/build/esp32doit-devkit-v1/
+cd hi
+wget https://raw.githubusercontent.com/gadepall/termux/main/pio/Projects/hi/platformio.ini
+nano platformio.ini
+#comment the following line like this
+;platform_packages = toolchain-xtensa32@https://github.com/esphome/esphome-docker-base/releases/download/v1.4.0/toolchain-xtensa32.tar.gz
+
+#From your phone
+scp .pio/build/esp32doit-devkit-v1/firmware.bin pi@192.168.50.252:./hi/.pio/build/esp32doit-devkit-v1/
+
+#On your rpi
+cd ~/hi
+pio run -t nobuild -t upload
+-------------------------------End ESP32 installation --------------------
+
+#Arduino
+cd Projects/hello
+pio run
+#  All other commands same as for esp32
+
+-------------------------------End Arduino installation ------------------
+
+
+
+------------------Ignore commands below-------------------------
+
+#For arduino on remote machine
+ssh -tt -n -L 8086:localhost:8086 pi@10.0.0.8 '/usr/sbin/ser2net -d -C "8086:raw:600:/dev/ttyUSB0:115200 NONE 1STOPBIT 8DATABITS -XONXOFF LOCAL -RTSCTS HANGUP_WHEN_DONE "' 
+
+avrdude -p atmega328p -c arduino -P net:localhost:8086 -U flash:w:hello.hex
+
+#Pio Remote Agent testing
+
+#On RPi
+pip3 install platformio
+pio remote agent start --share
+
+#On termux
+pio remote run -t upload --upload-port 192.168.0.255
+
+
+
+
