@@ -49,8 +49,8 @@ avrdude -p atmega328p -c arduino -P net:localhost:8086 -U flash:w:hello.hex
 #Pio Remote Agent testing
 
 #On RPi
-pip3 install platformio
-pio remote agent start --share
+sudo pip3 install platformio
+sudo pio remote agent start --share
 
 #On termux
 pio remote run -t upload --upload-port 192.168.0.255
