@@ -2,8 +2,9 @@
 #Install platformio (use pip3 instead of pip for ubuntu) on termux
 pip install platformio
 
-#Download project
+#Download sample directory for esp32 and arduino
 svn co https://github.com/gadepall/termux/trunk/pio/Projects
+pio lib --global install "stempedia/DabbleESP32"
 
 #Install xtensa and espressif32
 cd Projects/hi
