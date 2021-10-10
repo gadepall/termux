@@ -22,8 +22,8 @@ apt install git silversearcher-ag wget openssh subversion imagemagick proot nano
 apt update
 apt install proot-distro
 #Install ubuntu
-proot-distro install ubuntu-20.04
-proot-distro login ubuntu-20.04
+proot-distro install ubuntu 
+proot-distro login ubuntu
 apt update && apt upgrade
 apt install apt-utils build-essential
 apt install git  wget  subversion imagemagick  nano  
@@ -62,17 +62,13 @@ wget https://github.com/cdr/code-server/releases/download/v3.10.2/code-server_3.
 #Install code-server
 dpkg -i code-server_3.10.2_arm64.deb
 
-#Create password for vscode
-export PASSWORD="test123"
-
 #Run code-server
-cd $PREFIX/../home/
-code-server
+cd $PREFIX/../home
+code-server --auth none
 
 #In your browser, open
 http://127.0.0.1:8080
 
-#and enter the password "test123"
 
 #------------------ End installing code-server on termuxubuntu----------------------------
 
@@ -99,3 +95,10 @@ tab
 
 #Installing cvxpy
 #pip3 install cvxpy
+
+#Create password for vscode
+#export PASSWORD="test123"
+#In your browser, open
+http://127.0.0.1:8080
+
+#and enter the password "test123"
