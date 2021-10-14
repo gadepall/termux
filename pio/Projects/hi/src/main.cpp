@@ -1,14 +1,15 @@
+//Blink program for onboard LED on esp32
 #include <Arduino.h>
 
 void setup() {
-  pinMode(22,OUTPUT);
+  pinMode(2,OUTPUT);
   // put your setup code here, to run once:
 }
 
 void loop() {
-  digitalWrite(22,HIGH);
+  digitalWrite(2,HIGH);
    delay(1000);
-   digitalWrite(22,LOW);
+   digitalWrite(2,LOW);
    delay(1000);
 
   // put your main code here, to run repeatedly:
