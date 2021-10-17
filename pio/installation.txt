@@ -20,11 +20,11 @@ mkdir -p ~/hi/.pio/build/esp32doit-devkit-v1/
 cd hi
 wget https://raw.githubusercontent.com/gadepall/termux/main/pio/Projects/hi/platformio.ini
 nano platformio.ini
-#comment the following line like this
+#comment the following line like this if you are using rpi3
 ;platform_packages = toolchain-xtensa32@https://github.com/esphome/esphome-docker-base/releases/download/v1.4.0/toolchain-xtensa32.tar.gz
 
 #From your phone
-scp .pio/build/esp32doit-devkit-v1/firmware.bin pi@192.168.50.252:./hi/.pio/build/esp32doit-devkit-v1/
+scp .pio/build/esp32doit-devkit-v1/firmware.bin pi@192.168.50.252:./hi/.pio/build/esp32doit-devkit-v1/firmware.bin
 
 #On your rpi
 cd ~/hi
