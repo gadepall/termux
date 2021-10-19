@@ -1,15 +1,20 @@
+apt install parted
 
+cd /storage/emulated/0/Download
+tsu
+wget https://raw.githubusercontent.com/gadepall/termux/main/termuxrpi/create-arch-image-raspberry-pi-4.sh
+nano create-arch-image-raspberry-pi-4.sh
+#enter the ssid and password for your wifi network at the appropriate place.  save and exit
+bash create-arch-image-raspberry-pi-4.sh
+#This should create an archlinux image in the Download folder
 
 #Connect blank sdcard to your phone. 
 #On termux (if rooted phone)
-cd /storage/emulated/0/Download
-tsu
 dmesg | tail
 #You may see something like sdg for the usb device
 
 #Write the raspbian image to the sdcard
 dd bs=4M if=archxxxxxx.img of=/dev/block/sdg conv=fsync status=progress
-
 
 #Now insert the sdcard in your rpi and boot.  Your rpi should be connected to your wifi network.
 
