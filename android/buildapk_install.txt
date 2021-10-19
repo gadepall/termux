@@ -1,0 +1,12 @@
+https://buildapks.github.io/buildAPKs/
+
+
+#Installing gradle.   Download grade from (Download From Mirror) link in 
+
+https://archlinux.org/packages/community/any/gradle/download
+
+#Assuming that the package is in the downloads folder, 
+sudo pacman -U /storage/emulated/0/Download/gradle-7.2-1-any.pkg.tar.zst
+gradle -v
+
+

@@ -1,0 +1,38 @@
+
+
+#Connect blank sdcard to your phone. 
+#On termux (if rooted phone)
+cd /storage/emulated/0/Download
+tsu
+dmesg | tail
+#You may see something like sdg for the usb device
+
+#Write the raspbian image to the sdcard
+dd bs=4M if=archxxxxxx.img of=/dev/block/sdg conv=fsync status=progress
+
+
+#Now insert the sdcard in your rpi and boot.  Your rpi should be connected to your wifi network.
+
+#Basic setup
+su
+
+#Enter password as root
+pacman-key --init
+pacman-key --populate archlinuxarm
+pacman -Syu
+nano /etc/sudoers
+
+#Uncomment the line
+%wheel ALL=(ALL) ALL
+
+#Building yay
+pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si
+
+yay -S raspi-config
+
+#For usb access to hardware
+sudo pacman -S pciutils usbutils
+sudo usermod -a -G uucp alarm
