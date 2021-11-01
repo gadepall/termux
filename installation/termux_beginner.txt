@@ -44,7 +44,7 @@ bash rncom.sh
 #------------------ End downloading latex and python templates----------------------------
 
 #------------------ Installing jupyterlab on termuxubuntu----------------------------
-pip install jupyterlab 
+pip3 install jupyterlab 
 jupyterlab --allow-root
 #------------------ End installing jupyterlab on termuxubuntu----------------------------
 
