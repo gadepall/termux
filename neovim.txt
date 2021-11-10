@@ -1,0 +1,32 @@
+#Installing neovim
+sudo pacman -S neovim
+mkdir -p ~/.config/nvim
+touch ~/.config/nvim/init.vim
+
+#Installing vim-plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+#Enter plugin
+vim ~/.config/nvim/init.vim       
+
+
+call plug#begin('~/.config/nvim/plugged') 
+Plug 'lervag/vimtex' 
+call plug#end()
+
+:source ~/.config/nvim/init.vim
+
+#In a new terminal
+nvim
+
+:PlugInstall
+:UpdateRemotePlugins
+:q!
+:q!
+#To remove a plugin
+:w
+:source ~/.config/nvim/init.vim
+:PlugClean
+
+Enter y
