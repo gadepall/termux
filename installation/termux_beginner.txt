@@ -25,13 +25,13 @@ apt install proot-distro
 proot-distro install ubuntu 
 proot-distro login ubuntu
 apt update && apt upgrade
-apt install apt-utils build-essential
+apt install apt-utils build-essential cmake
 apt install git  wget  subversion imagemagick  nano  
 #------------------End Installing ubuntu on termux----------------------------
 
 #------------------ Installing python3 on termuxubuntu----------------------------
 apt install python3-pip python3-numpy python3-scipy python3-matplotlib python3-mpmath python3-sympy python3-cvxopt
-
+pip install cvxpy==1.0.21 scs==2.1.3
 
 #------------------ End installing python3 on termuxubuntu----------------------------
 
