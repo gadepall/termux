@@ -42,3 +42,9 @@ ctrl+w,c
 ctrl+v, select lines, Shift+I, #, Esc - for bash files.  For latex, replace # by % and so on
 #Uncomment lines
 ctrl+v, select lines, x
+
+#Close multiple tabs
+#The following command closes tabs 2 and 3.  . is for the current tab and $ for the last tab
+:2,3tabdo :q
+
+#Search and replace
