@@ -48,3 +48,20 @@ ctrl+v, select lines, x
 :2,3tabdo :q
 
 #Search and replace
+%s@find@replace@gc
+#For large strings, use a visual block to copy using y and then press q:
+#This will allow you to use vim commands on the the command line
+#Then you can use p to paste the large string
+
+#To get path of the current file, 
+ctrl+R, %
+
+#To use the vim command line, just like the vim insertion mode,
+q:
+
+
+#For page  down, 
+ctrl+F
+#For page up
+ctrl+B
+#https://github.com/citizen428/nvim-config#readme
