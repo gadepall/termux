@@ -65,3 +65,8 @@ ctrl+F
 #For page up
 ctrl+B
 #https://github.com/citizen428/nvim-config#readme
+
+#For handling words
+w, for moving foward
+b, for moving backword
+y,d can be used in combination for deleting words etc
