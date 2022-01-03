@@ -37,7 +37,7 @@ pacman -Syu
 #geany gnumeric clang bison flex svn make cmake 
 
 pacman -Sy go base-devel  wget git  python-pip \
-gnumeric clang bison flex svn make cmake 
+gnumeric clang bison flex svn make cmake neovim
 
 
 #Exit
