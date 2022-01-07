@@ -1,26 +1,49 @@
 #------------------Install Termux----------------------------
 
-#Attach a keyboard to your mobile 
 
 #Install fdroid apk from
 https://www.f-droid.org/
 
-#Open fdroid on your mobile and install termux from it
+#Open fdroid on your mobile and install termux-terminal app from it
+
+
+#------------------Install Termux----------------------------
 
 #Give termux access to your  user directory in android
 termux-setup-storage
 
 #Upgrade packages
 apt update && apt upgrade
-apt install build-essential
+apt install build-essential openssh
 
 #Mandatory packages
-apt install git silversearcher-ag wget openssh subversion imagemagick proot proot-distro python  bsdtar mutt nmap neovim
+apt install git silversearcher-ag wget subversion imagemagick proot proot-distro python  bsdtar mutt nmap neovim
 #------------------End Install Termux----------------------------
 
+#Do this if you don't have a keyboard and want to install linux on your phone
+#------------------Connecting to termux through ssh----------------------------
+#On termux on your phone
+#Enter a simple password
+passwd
+
+#This will give you your username
+whoami
+
+#Find your ip address
+ifconfig 
+
+#Start ssh server on your mobile 
+ssd
+
+#On your laptop
+ssh username@ipaddress -p8022
+
+#Enter the password and you are connected to termux through your laptop
+
+#------------------End Connecting to termux through ssh----------------------------
+
+
 #------------------ Installing ubuntu on termux----------------------------
-apt update
-apt install proot-distro
 #Install ubuntu
 proot-distro install ubuntu 
 proot-distro login ubuntu
@@ -31,9 +54,17 @@ apt install git  wget  subversion imagemagick  nano
 
 #------------------ Installing python3 on termuxubuntu----------------------------
 apt install python3-pip python3-numpy python3-scipy python3-matplotlib python3-mpmath python3-sympy python3-cvxopt
-pip install cvxpy==1.0.21 scs==2.1.3
-
 #------------------ End installing python3 on termuxubuntu----------------------------
+
+#------------------ Installing platformio on termuxubuntu----------------------------
+pip3 install platformio
+#------------------ End installing python3 on termuxubuntu----------------------------
+
+
+#------------------ Installing cvxpy on termuxubuntu----------------------------
+pip3 install cvxpy==1.0.21 scs==2.1.3
+#------------------ End installing cvxpy on termuxubuntu----------------------------
+
 
 #------------------ Download latex and python templates----------------------------
 cd /data/data/com.termux/files/home/storage/shared/Download

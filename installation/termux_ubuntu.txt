@@ -1,9 +1,9 @@
-#Installing ubuntu on termux
-# Install ubuntu on Termux
-apt update
-apt install proot-distro
+#------------------ Installing ubuntu on termux----------------------------
 #Install ubuntu
-proot-distro install ubuntu-20.04
-proot-distro login ubuntu-20.04
+proot-distro install ubuntu 
+proot-distro login ubuntu
 apt update && apt upgrade
-apt install build-essential
+apt install apt-utils build-essential cmake
+apt install git  wget  subversion imagemagick  nano  
+#------------------End Installing ubuntu on termux----------------------------
+

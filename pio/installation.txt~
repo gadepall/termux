@@ -1,4 +1,3 @@
-------------------On Termux------------------
 #ESP32----------------------------------------------------------
 #Install platformio (use pip3 instead of pip for ubuntu) on termux
 pip install platformio
@@ -13,9 +12,6 @@ pio run
 
 #This will also build firmware.bin in 
 .pio/build/esp32doit-devkit-v1/firmware.bin 
-
-#comment the following line like this if you are using  your laptop
-;platform_packages = toolchain-xtensa32@https://github.com/esphome/esphome-docker-base/releases/download/v1.4.0/toolchain-xtensa32.tar.gz
 
 
 #On your rpi
