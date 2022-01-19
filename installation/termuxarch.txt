@@ -37,7 +37,7 @@ pacman -Syu
 #geany gnumeric clang bison flex svn make cmake 
 
 pacman -Sy go base-devel  wget git  python-pip \
-gnumeric clang bison flex svn make cmake neovim
+gnumeric clang bison flex svn make cmake neovim imagemagick
 
 
 #Exit
@@ -61,8 +61,6 @@ pacman -Sy texlive-most
 pacman -Sy python-numpy python-scipy python-matplotlib python-mpmath python-sympy python-cvxopt python-wheel
 pip install cvxpy
 
-#Install imagemagick
-pacman -Sy imagemagick
 
 
 
