@@ -15,7 +15,7 @@ bash: warning: setlocale: LC_MESSAGES: cannot change locale (en_IN.UTF-8)
 bash: warning: setlocale: LC_NUMERIC: cannot change locale (en_IN.UTF-8)
 bash: warning: setlocale: LC_TIME: cannot change locale (en_IN.UTF-8)
 
-vi/etc/locale.gen
+vi /etc/locale.gen
 
 #Uncomment the line 
 en_IN.UTF-8...
