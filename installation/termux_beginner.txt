@@ -48,7 +48,7 @@ ssh username@ipaddress -p8022
 proot-distro install ubuntu 
 proot-distro login ubuntu
 apt update && apt upgrade
-apt install apt-utils build-essential cmake
+apt install apt-utils build-essential cmake neovim
 apt install git  wget  subversion imagemagick  nano  
 #------------------End Installing ubuntu on termux----------------------------
 
