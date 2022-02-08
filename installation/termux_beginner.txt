@@ -33,7 +33,7 @@ whoami
 ifconfig 
 
 #Start ssh server on your mobile 
-ssd
+sshd
 
 #On your laptop
 ssh username@ipaddress -p8022
