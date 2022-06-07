@@ -45,8 +45,8 @@ ssh username@ipaddress -p8022
 
 #------------------ Installing ubuntu on termux----------------------------
 #Install ubuntu
-proot-distro install ubuntu 
-proot-distro login ubuntu
+proot-distro install debian
+proot-distro login debian
 apt update && apt upgrade
 apt install apt-utils build-essential cmake neovim
 apt install git  wget  subversion imagemagick  nano  
