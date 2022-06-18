@@ -1,0 +1,46 @@
+set ssl_force_tls = yes
+set abort_nosubject = no
+set mail_check = 60
+set timeout = 10
+set sort = "reverse-date-received"
+set signature = "~/.mutt/signature"
+set copy = no
+
+set realname = "Your Name"
+set from = "abcd@efgh.com"
+set use_from = yes
+set envelope_from = yes
+
+set smtp_url = "smtps://abcd@efgh.com@smtp.gmail.com:465/"
+set smtp_pass = "your password"
+set imap_user = "abcd@efgh.com@
+set imap_pass = "your password"
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set ssl_force_tls = yes
+set header_cache = ~/.cache/mutt
+
+# G to get mail
+bind index G imap-fetch-mail
+set editor = "nvim"
+set charset = "utf-8"
+set record = ''
+
+#Google addressbook using goobook
+set query_command="goobook query %s"
+macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
+bind editor <Tab> complete-query
+#set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+#bind editor <Tab> complete-query
+bind editor ^T    complete
+
+set sort="threads"
+set strict_threads="yes"
+
+set sort_browser="reverse-date"
+set sort_aux="last-date-received"
+
+unset collapse_unread
+bind index - collapse-thread
+bind index _ collapse-all
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'

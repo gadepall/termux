@@ -1,0 +1,2 @@
+#Install mutt
+apt install mutt urlview
