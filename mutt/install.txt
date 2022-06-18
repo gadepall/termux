@@ -1,2 +1,11 @@
 #Install mutt
 apt install mutt urlview
+wget https://raw.githubusercontent.com/gadepall/termux/main/mutt/.muttrc
+wget https://raw.githubusercontent.com/gadepall/termux/main/mutt/.urlview
+wget https://raw.githubusercontent.com/gadepall/termux/main/mutt/.myurlviewer.sh
+
+#Configure .muttrc
+nvim .muttrc
+#Change your gmail id and token password
+#Save and exit
+
