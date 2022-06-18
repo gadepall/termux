@@ -49,7 +49,7 @@ proot-distro install debian
 proot-distro login debian
 apt update && apt upgrade
 apt install apt-utils build-essential cmake neovim
-apt install git  wget  subversion imagemagick  nano  
+apt install git  wget  subversion imagemagick  nano  ranger 
 #------------------End Installing ubuntu on termux----------------------------
 
 #------------------ Installing python3 on termuxubuntu----------------------------
