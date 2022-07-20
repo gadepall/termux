@@ -1,0 +1,48 @@
+#Install debian 
+docker pull debian
+mkdir mydoc
+
+#log into debian container
+#docker run -it debian
+
+#check what containers are running
+docker ps
+
+#start docker with a shared folder mydoc.  This will ensure that all files in the mydoc folder in the docker image will be visible inside the host mydoc directory 
+#Replace gvv with your preferred name
+
+docker run -ti -v "$PWD/mydoc":/mydoc --name=gvv debian /bin/bash
+
+#Create user fruit.  You may replace fruit with any name of your choice
+apt update && apt install sudo
+adduser fruit
+usermod -aG sudo fruit
+exit
+
+docker commit -m "added sudo user" <CONTAINER ID>  gvv
+docker exec --user fruit -it gvv /bin/bash
+
+
+#----------------------------------------------------------------------------------
+
+#log into a running container where silly_ride is the output of the previous command
+docker exec -it container-id /bin/bash
+
+#stop container
+docker stop container-id
+
+#restart container
+docker restart container-id
+
+#rename container
+docker rename old-container-id new-container-id
+
+#remove container
+docker rm container-id
+
+
+#Remove all containers
+docker rm -f $(docker ps -a -q)
+
+#Delete all volumes using the following command:
+docker volume rm $(docker volume ls -q)

@@ -8,16 +8,17 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 curl -fLo ~/.config/nvim/init.vim --create-dirs https://raw.githubusercontent.com/gadepall/termux/main/neovim/init.vim
 
 #Enter plugin
-#nvim ~/.config/nvim/init.vim       
+nvim ~/.config/nvim/init.vim       
+:PlugInstall
 
 
-call plug#begin('~/.config/nvim/plugged') 
-Plug 'lervag/vimtex' 
-call plug#end()
+#For installing a plugin
+#call plug#begin('~/.config/nvim/plugged') 
+#Plug 'lervag/vimtex' 
+#call plug#end()
 
 nvim
 
-:PlugInstall
 :UpdateRemotePlugins
 :q!
 #To remove a plugin
