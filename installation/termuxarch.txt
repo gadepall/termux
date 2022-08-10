@@ -1,3 +1,35 @@
+
+proot-distro install archlinux
+proot-distro login archlinux
+pacman -Syu 
+
+#Create user fruit
+useradd -m fruit
+su - fruit
+
+#Add fruit to sudoers
+pacman -S sudo && visudo
+
+#Add the following line and replace USER_NAME with your username 
+USER_NAME   HOST_NAME=(ALL:ALL) ALL
+
+#Install yay
+sudo pacman -Syu
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si
+cd ~
+
+#Test yay 
+yay -S  avra
+
+#Install python
+sudo pacman -S python-numpy python-scipy python-matplotlib python-mpmath python-sympy python-cvxopt
+
+#Install ranger
+
+
 #Installing archlinux on termux, aka termuxarch
 
 #Get termuxarch 
