@@ -1,4 +1,4 @@
-
+---------------------------------------------------Begin setup -----------------------------
 proot-distro install archlinux
 proot-distro login archlinux
 pacman -Syu 
@@ -10,12 +10,29 @@ su - fruit
 #Add fruit to sudoers
 pacman -S sudo && visudo
 
-#Add the following line and replace USER_NAME with your username 
-USER_NAME   HOST_NAME=(ALL:ALL) ALL
+#Add the following line 
+fruit ALL=(ALL:ALL) NOPASSWD: ALL
+---------------------------------------------------End setup -----------------------------
+
+#Base packages
+sudo pacman -Sy --needed go base-devel  wget curl git  python-pip \
+clang bison flex svn make cmake neovim imagemagick  
+---------------------------------------------------End base installation-----------------------------
+
+#Install ranger
+sudo pacman -Sy ranger python-pynvim ueberzug
+
+#Installing vim-plug
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+curl -fLo ~/.config/nvim/init.vim --create-dirs https://raw.githubusercontent.com/gadepall/termux/main/neovim/init.vim
+
+#Enter plugin
+nvim ~/.config/nvim/init.vim       
+:PlugInstall
+---------------------------------------------------End ranger installation-----------------------------
 
 #Install yay
-sudo pacman -Syu
-sudo pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
 makepkg -si
@@ -23,12 +40,30 @@ cd ~
 
 #Test yay 
 yay -S  avra
+---------------------------------------------------End yay installation-----------------------------
 
 #Install python
 sudo pacman -S python-numpy python-scipy python-matplotlib python-mpmath python-sympy python-cvxopt
 
-#Install ranger
+#Optional
+pip install cvxpy
 
+---------------------------------------------------End python installation-----------------------------
+
+
+#Install texlive
+sudo pacman -Sy texlive-most gnumeric 
+---------------------------------------------------End texlive installation-----------------------------
+
+#Install neomutt
+sudo pacman -S neomutt 
+yay -S --editmenu urlview
+wget https://raw.githubusercontent.com/gadepall/termux/main/mutt/.urlview
+wget https://raw.githubusercontent.com/gadepall/termux/main/mutt/.myurlviewer.sh
+
+
+
+---------------------------------------------------End termuxarch installation-----------------------------
 
 #Installing archlinux on termux, aka termuxarch
 
@@ -68,8 +103,6 @@ pacman -Syu
 #pacman -Sy go base-devel tigervnc lxde wget git geany python-pip ttf-dejavu  chromium \
 #geany gnumeric clang bison flex svn make cmake 
 
-pacman -Sy go base-devel  wget git  python-pip \
-gnumeric clang bison flex svn make cmake neovim imagemagick
 
 
 #Exit
@@ -85,16 +118,6 @@ yay -S code-server
 # Now visit http://127.0.0.1:8080. Your password is in ~/.config/code-server/config.yaml
 export PASSWORD="password"
 code-server
-
-#Install texlive
-pacman -Sy texlive-most
-
-#Install python
-pacman -Sy python-numpy python-scipy python-matplotlib python-mpmath python-sympy python-cvxopt python-wheel
-pip install cvxpy
-
-
-
 
 
 #Exit 

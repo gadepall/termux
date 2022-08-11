@@ -1,8 +1,15 @@
 #Install mutt
-apt install mutt urlview
+#Debian
+apt install neomutt urlview
+
+#Archlinux
+sudo pacman -S neomutt 
+yay -S --editmenu urlview
+
 wget https://raw.githubusercontent.com/gadepall/termux/main/mutt/.muttrc
 wget https://raw.githubusercontent.com/gadepall/termux/main/mutt/.urlview
 wget https://raw.githubusercontent.com/gadepall/termux/main/mutt/.myurlviewer.sh
+chmod +x .myurlviewer.sh
 
 #Configure .muttrc
 nvim .muttrc
