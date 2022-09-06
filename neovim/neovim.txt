@@ -15,7 +15,9 @@ curl -fLo ~/.config/nvim/init.vim --create-dirs https://raw.githubusercontent.co
 #Enter plugin
 nvim ~/.config/nvim/init.vim       
 :PlugInstall
+:qa!
 
+#Beginners may ignore the following
 
 #For installing a plugin
 #call plug#begin('~/.config/nvim/plugged') 
