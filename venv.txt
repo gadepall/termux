@@ -1,0 +1,16 @@
+#Install virtual environment
+
+sudo pip install virtualenv
+
+#Create virtual environment
+
+python -m virtualenv --always-copy envname
+
+#Activate virtual environment
+
+source envname/bin/activate
+
+
+#Deactivate
+
+deactivate
