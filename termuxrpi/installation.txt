@@ -9,7 +9,7 @@ dmesg | tail
 #You may see something like sdg for the usb device
 
 #Write the raspbian image to the sdcard
-dd bs=4M if=xxxraspbianxxx.img of=/dev/block/sdg conv=fsync
+dd bs=4M if=xxxraspbianxxx.img of=/dev/block/sdg conv=fsync status=progress
 
 #This will take around 5 min.
 
