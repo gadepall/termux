@@ -50,7 +50,9 @@ apt install transmission-cli
 cd /sdcard/Download/
 transmission-cli 2023-12-05-raspios-bookworm-arm64-lite.img.xz.torrent
 mv /root/Downloads/*.xz /sdcard/Downloads
-#Now copy the .xz file to your usb drive
+cd /sdcard/Downloads
+xz -d 2023-12-05-raspios-bookworm-arm64-lite.img.xz
+#Now copy the .img file to your usb drive
 #Remove your usb drive from phone and insert into rpi with old os
 
 
