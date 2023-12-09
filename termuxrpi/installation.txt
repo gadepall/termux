@@ -40,5 +40,20 @@ Nmap done: 256 IP addresses (2 hosts up) scanned in 29.70 seconds
 #192.168.127.242 is the ip address of your rpi
 ssh pi@192.168.127.242 
 #you can now login by entering the password and 
+------------------------------------------------------------------------------------------------------------
+#Using old rpi os
+------------------------------------------------------------------------------------------------------------
+#On termux-debian
+#Download transmission for torrent
+apt install transmission-cli
+#Download the torrent file from rpi website
+cd /sdcard/Download/
+transmission-cli 2023-12-05-raspios-bookworm-arm64-lite.img.xz.torrent
+mv /root/Downloads/*.xz /sdcard/Downloads
+#Now copy the .xz file to your usb drive
+#Remove your usb drive from phone and insert into rpi with old os
+
+
+
 
 
