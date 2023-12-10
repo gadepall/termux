@@ -1,1 +1,28 @@
+#Install samba
+sudo apt install samba samba-common-bin -y
+
+#Create shared directory
+sudo mkdir -m 1777 ~/share
+#Configure samba
+sudo nvim /etc/samba/smb.conf
+#and add the following lines at the end
+[share]
+Comment = Pi shared folder
+Path = ~/share
+Browseable = yes
+Writeable = Yes
+only guest = no
+create mask = 0777
+directory mask = 0777
+Public = yes
+Guest ok = yes
+
+#Setup a samba username 'pi' and password
+sudo smbpasswd -a pi
+
+#Restart samba
+sudo /etc/init.d/samba restart
+
+
+
 
