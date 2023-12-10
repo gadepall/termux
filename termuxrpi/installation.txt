@@ -54,6 +54,43 @@ cd /sdcard/Downloads
 xz -d 2023-12-05-raspios-bookworm-arm64-lite.img.xz
 #Now copy the .img file to your usb drive
 #Remove your usb drive from phone and insert into rpi with old os
+#assuming the username is pi
+mkdir /home/pi/disk
+sudo fdisk -l
+#You should see something like this
+Disk /dev/sda: 57.28 GiB, 61505273856 bytes, 120127488 sectors
+Disk model: Ultra
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+#Now mount the usb stick
+sudo mount /dev/sda disk
+#Insert sdcard
+sudo fdisk -l
+#You should see something like this
+
+Disk /dev/sdb: 119.08 GiB, 127865454592 bytes, 249737216 sectors
+Disk model: Storage Device
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x00000000
+
+Device     Boot Start       End   Sectors   Size Id Type
+/dev/sdb1        2048 249737182 249735135 119.1G  7 HPFS/NTFS/exFAT
+
+#Now write the rpi image to sdcard
+sudo dd bs=4M if=~/disk/2023-12-05-raspios-bookworm-arm64-lite.img of=/dev/sdb conv=fsync status=progress
+
+#Now unmount your usb stick
+
+sudo umount disk
+
+#Remove usb stick as well as sdcard from the rpi
+#Insert sdcard in your phone
+
+
 
 
 
