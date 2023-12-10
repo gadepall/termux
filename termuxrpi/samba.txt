@@ -6,7 +6,7 @@ sudo mkdir -m 1777 /share
 #Configure samba
 sudo nvim /etc/samba/smb.conf
 #and add the following lines at the end
-[share]
+[rpishare]
 Comment = Pi shared folder
 Path = /share
 Browseable = yes
@@ -23,5 +23,8 @@ sudo smbpasswd -a pi
 #Restart samba
 sudo systemctl restart smbd
 
-
+#To copy files using the command line
+smbmap -H 192.168.50.254 --upload .pio/build/uno/firmware.hex rpishare\\firmware.hex
+#.pio/build/uno/firmware.hex is the local file
+# rpishare\\firmware.hex is the destination
 
