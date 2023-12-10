@@ -21,8 +21,7 @@ Guest ok = yes
 sudo smbpasswd -a pi
 
 #Restart samba
-sudo /etc/init.d/samba restart
-
+sudo systemctl restart smbd
 
 
 
