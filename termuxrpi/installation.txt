@@ -53,6 +53,7 @@ mv /root/Downloads/*.xz /sdcard/Downloads
 cd /sdcard/Downloads
 xz -d 2023-12-05-raspios-bookworm-arm64-lite.img.xz
 #Now copy the .img file to your usb drive
+
 #Remove your usb drive from phone and insert into rpi with old os
 #assuming the username is pi
 mkdir /home/pi/disk
@@ -90,8 +91,56 @@ sudo umount disk
 #Remove usb stick as well as sdcard from the rpi
 #Insert sdcard in your phone
 #You should see bootfs directory mounted on your phone
-#Copy ssh, userconf.txt and wpa_supplicant.conf to bootfs
-#Insert your new sdcard into the pi and you should be good to go
+#Create an empty file named ssh and copy into bootfs
+#on termux, 
+echo 'rpi_password' | openssl passwd -6 -stdin
+#this will create a long encrypted_password
+#Create a file named userconf in the root directory of the SD card’s boot partition and add the line
+username:encrypted_password 
+where username is the username you want to use to log in to the rpi
+#Copy ssh, userconf to bootfs
+#Insert your new sdcard into the pi 
+# tethering your rpi to your phone 
+#On termux
+ifconfig
+#you will get something like
+
+Warning: cannot open /proc/net/dev (Permission denied). Limited output.
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+
+rmnet_data6: flags=65<UP,RUNNING>  mtu 1500
+        inet 100.97.4.187  netmask 255.255.255.248
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+
+rndis0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.228.73  netmask 255.255.255.0  broadcast 192.168.228.255
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+
+wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.50.206  netmask 255.255.255.0  broadcast 192.168.50.255
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 3000  (UNSPEC)
+
+#type
+nmap -sn 192.168.228.1/24
+#and you will see something like
+
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-12-10 11:39 IST
+Nmap scan report for 192.168.228.23
+Host is up (0.0018s latency).
+Nmap scan report for 192.168.228.73
+Host is up (0.00064s latency).
+Nmap done: 256 IP addresses (2 hosts up) scanned in 3.18 seconds
+
+#now connect to rpi
+ssh username@192.168.228.23
+
+#Enter rpi_password as the password
+#setup wifi
+sudo raspi-config
+#select system options to setup the wifi ssid and password
+
 
 
 
