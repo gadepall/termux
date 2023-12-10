@@ -89,6 +89,9 @@ sudo umount disk
 
 #Remove usb stick as well as sdcard from the rpi
 #Insert sdcard in your phone
+#You should see bootfs directory mounted on your phone
+#Copy ssh, userconf.txt and wpa_supplicant.conf to bootfs
+#Insert your new sdcard into the pi and you should be good to go
 
 
 
