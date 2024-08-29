@@ -1,0 +1,16 @@
+#To duplicate repo using command line
+
+#Duplicate your local git repo
+cp -r  git_directory new_git_directory
+
+#Enter duplicate local repo
+cd new_git_directory
+
+#Create duplicate repo on github.  This will generate a new url
+gh repo create <new-repo-name> --public
+
+#Link local duplicate to new git location
+git remote set-url origin <new-remote-repo-url>
+
+#Push duplicate repo online
+git push origin 
