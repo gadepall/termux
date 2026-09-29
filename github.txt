@@ -1,0 +1,8 @@
+#Creating a new repo from within a new local directory
+git init
+git add .
+git commit -m "Initial commit"
+
+#The following will automotaically create a repo with the same
+#name as the local folder
+gh repo create --source=. --push --public
